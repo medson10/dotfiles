@@ -1,0 +1,51 @@
+!! Appearance
+urxvt.termName: rxvt-unicode
+urxvt.scrollBar: false
+urxvt.background: #000
+urxvt.foreground: #ececec
+!! Font prefferenes
+urxvt.font: xft:DejaVu Sans Mono:pixelsize=14
+urxvt.boldFont: xft:DejaVu Sans Mono:pixelsize=14:weight=bold
+urxvt.letterSpace: 0
+!! Larger history limit
+urxvt.saveLines: 1000000
+! urxvt.transparency: true
+! urxvt.shading: 95
+
+!! Perl extensions
+urxvt.perl-ext-common: default,matcher,font-size
+!! Open urls in browser with Control-Click
+urxvt.urlLauncher: /usr/bin/firefox
+urxvt.matcher.button: C1
+!! Change font size on Control-Plus/Minus
+URxvt.keysym.Control-0x2b: perl:font-size:increase
+URxvt.keysym.Control-0x2d: perl:font-size:decrease
+
+*color0:  #2E3436
+*color1:  #a40000
+*color2:  #4E9A06
+*color3:  #C4A000
+*color4:  #3465A4
+*color5:  #75507B
+*color6:  #ce5c00
+*color7:  #babdb9
+*color8:  #555753
+*color9:  #EF2929
+*color10: #8AE234
+*color11: #FCE94F
+*color12: #729FCF
+*color13: #AD7FA8
+*color14: #fcaf3e
+*color15: #EEEEEC
+
+URxvt.perl-ext-common: ...,tabbed,...
+URxvt.tabbed.tabbar-fg: 2
+URxvt.tabbed.tabbar-bg: 0
+URxvt.tabbed.tab-fg: 3
+URxvt.tabbed.tab-bg: 0
+URxvt.perl-ext-common: ...,fullscreen,...
+URxvt.keysym.F11: perl:fullscreen:switch
+URxvt.perl-ext-common:  ...,resize-font,...
+urxvt*transparent: true
+urxvt*shading: 15
+
