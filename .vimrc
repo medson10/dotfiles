@@ -1,26 +1,21 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdtree'
-Plug 'mxw/vim-jsx'
 Plug 'ajh17/spacegray.vim'
-Plug 'jelera/vim-javascript-syntax'
 Plug 'honza/vim-snippets'
 Plug 'mattn/emmet-vim'
 Plug 'ervandew/supertab'
 Plug 'townk/vim-autoclose'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'scrooloose/syntastic'
-Plug 'fatih/vim-go'
 Plug 'plasticboy/vim-markdown'
 Plug 'elzr/vim-json'
 Plug 'othree/html5.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'godlygeek/tabular'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'flazz/vim-colorschemes'
 Plug 'yggdroot/indentline'
 Plug 'bronson/vim-trailing-whitespace'
-Plug 'nanotech/jellybeans.vim'
 Plug 'ap/vim-css-color'
 Plug 'chiel92/vim-autoformat'
 Plug 'easymotion/vim-easymotion'
@@ -28,7 +23,6 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'myusuf3/numbers.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'bling/vim-airline'
-Plug 'shougo/vimproc.vim'
 Plug 'reasonml/vim-reason'
 Plug 'the-lambda-church/merlin'
 Plug 'rgrinberg/vim-ocaml'
@@ -39,45 +33,40 @@ Plug 'tomtom/tcomment_vim'
 Plug 'chiel92/vim-autoformat'
 Plug 'rakr/vim-one'
 Plug 'w0ng/vim-hybrid'
-Plug 'challenger-deep-theme/vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'jelera/vim-javascript-syntax'
 Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'pangloss/vim-javascript'
 Plug 'isruslan/vim-es6'
 Plug 'elzr/vim-json'
 Plug 'wavded/vim-stylus'
 Plug 'moll/vim-node'
 Plug 'sheerun/vim-polyglot'
 Plug 'hail2u/vim-css3-syntax'
-Plug 'danro/rename.vim'
 Plug 'fisadev/vim-ctrlp-cmdpalette'
 Plug 'jiangmiao/auto-pairs'
-Plug 'tyrannicaltoucan/vim-quantum'
-Plug 'cocopon/iceberg.vim'
 Plug 'tpope/vim-surround'
-Plug 'valloric/matchtagalways'
 Plug 'edkolev/tmuxline.vim'
 Plug 'ryanoasis/vim-devicons'
-Plug 'edkolev/promptline.vim'
 Plug 'enricobacis/vim-airline-clock'
 Plug 'renyard/vim-git-flow-format'
-Plug 'sonph/onehalf'
-Plug 'gosukiwi/vim-atom-dark'
-Plug 'jacoborus/tender'
-Plug 'liuchengxu/space-vim-dark'
 Plug 'wincent/ferret'
 Plug 'shougo/neocomplete.vim'
 Plug 'valloric/youcompleteme'
-Plug 'honza/vim-snippets'
-Plug 'mattn/emmet-vim'
-Plug 'ervandew/supertab'
 Plug 'sirver/ultisnips'
 Plug 'tpope/vim-endwise'
 Plug 'raimondi/delimitmate'
 Plug 'davidhalter/jedi-vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'shougo/neosnippet-snippets'
-
+Plug 'prettier/prettier'
+Plug 'sbdchd/neoformat'
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+Plug 'noahfrederick/vim-hemisu'
+Plug 'noahfrederick/vim-noctu'
+Plug 'sirver/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'mbbill/undotree'
 Plug 'autozimu/LanguageClient-neovim', {
   \ 'branch': 'next',
   \ 'do': 'bash install.sh',
@@ -86,13 +75,38 @@ Plug 'autozimu/LanguageClient-neovim', {
 " (Oational) Multi-entry selection UI.
 Plug 'junegunn/fzf'
 
+if has("persistent_undo")
+    set undodir=~/.undodir/
+    set undofile
+endif
 let g:LanguageClient_serverCommands = {
     \ 'reason': ['ocaml-language-server', '--stdio'],
     \ 'ocaml': ['ocaml-language-server', '--stdio'],
     \ 'javascript': ['javascript-typescript-stdio'],
     \ }
 
+syntax enable
+
+if has('gui_running')
+	set guifont=Fira\ Code
+endif
+
+if &compatible
+  set nocompatible
+endif
+
+filetype indent on
+
+set wildmenu
+
 set hidden
+set backspace=indent
+set backspace+=eol
+set backspace+=start
+
+set nobackup
+set nowb
+set noswapfile
 
 nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
@@ -116,18 +130,11 @@ nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
 
-nnoremap <C-u> :tabprevious<CR>
-nnoremap <C-i>   :tabnext<CR>
 nnoremap <C-t>     :tabnew<CR>
-nnoremap <C-s> 		 :w<CR>
-nnoremap <C-z> 		 <Esc>u<CR>i
 inoremap <C-t>     <Esc>:tabnew<CR>
 
 nnoremap o o<Esc>
 nnoremap O O<Esc>
-
-map <C-m> :NERDTreeToggle<CR>
-map <C-q> :q<CR>
 
 set tabstop=2
 set shiftwidth=2
@@ -139,6 +146,7 @@ set ts=2 sw=2
 
 set ai "Auto indent
 set si "Smart indent
+set ar "Autoread, update the opened files when they are changed"
 set wrap "Wrap lines
 set clipboard=unnamedplus
 
@@ -147,8 +155,15 @@ call plug#end()
 let mapleader = ","
 
 nnoremap <leader>d dd
-nnoremap <leader>p <C-S-v>
-nnoremap <leader>c <C-S-c>
+nnoremap <leader>q :q<CR>
+nnoremap <leader>p :CtrlP<cr>
+nnoremap <leader>u :tabprevious<cr>
+nnoremap <leader>i :tabnext<cr>
+nnoremap <leader>n :NERDTreeToggle<CR>
+nnoremap <leader>z :UndotreeToggle<cr>
+nnoremap <leader>a :bp<cr>
+nnoremap <leader>s :bn<cr>
+set nocompatible
 
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
@@ -185,27 +200,67 @@ for tool in s:opam_packages
 endfor
 " ## end of OPAM user-setup addition for vim / base ## keep this line
 
-" set background=dark
-" colorscheme hybrid
+let g:javascript_plugin_flow = 1
+let g:jsx_ext_required = 0
 
-"  colorscheme iceberg
+let g:prettier#autoformat = 0
+let g:prettier = "prettier"
+let g:prettier#exec_cmd_async = 1
+let g:prettier#quickfix_enabled = 0
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
 
-"colorscheme challenger_deep
+" max line length that prettier will wrap on
+" Prettier default: 80
+let g:prettier#config#print_width = 120
 
-" colorscheme spacegray
+" number of spaces per indentation level
+" Prettier default: 2
+let g:prettier#config#tab_width = 2
 
-" syntax on
-" colorscheme hemisu
+" use tabs over spaces
+" Prettier default: false
+let g:prettier#config#use_tabs = 'false'
 
+" print semicolons
+" Prettier default: true
+let g:prettier#config#semi = 'false'
+
+" single quotes over double quotes
+" Prettier default: false
+let g:prettier#config#single_quote = 'true'
+
+" print spaces between brackets
+" Prettier default: true
+let g:prettier#config#bracket_spacing = 'true'
+
+" put > on the last line instead of new line
+" Prettier default: false
+let g:prettier#config#jsx_bracket_same_line = 'true'
+
+" avoid|always
+" Prettier default: avoid
+let g:prettier#config#arrow_parens = 'always'
+
+" none|es5|all
+" Prettier default: none
+let g:prettier#config#trailing_comma = 'all'
+
+" flow|babylon|typescript|css|less|scss|json|graphql|markdown
+" Prettier default: babylon
+let g:prettier#config#parser = 'flow'
+
+" cli-override|file-override|prefer-file
+let g:prettier#config#config_precedence = 'prefer-file'
+
+" always|never|preserve
+let g:prettier#config#prose_wrap = 'preserve'
+
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git\|^\.coffee|^\ios'
+let g:ctrlp_working_path_mode = 0
+
+set background=dark
 syntax on
-colorscheme dracula
-
-" set background=dark
-" set termguicolors
-" let g:quantum_black=1
-" let g:quantum_italics=1
-" colorscheme quantum
-" let g:airline_theme='quantum'
-
-" colorscheme atom-dark
+colorscheme hemisu
 
