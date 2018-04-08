@@ -1,8 +1,10 @@
 nodejs 8.11.0
 crystal 0.24.1
-ocaml 4.02.3
+ocaml 4.06.1
 gradle 4.4.1
 java 8.131
 python 3.6.3
 golang 1.9.4
 dotnet-core 2.1.4
+postgres 10.3
+mongodb 3.5.1
