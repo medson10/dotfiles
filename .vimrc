@@ -1,94 +1,102 @@
-call plug#begin('~/.vim/plugged')
+filetype off                  " required
 
-Plug 'scrooloose/nerdtree'
-Plug 'ajh17/spacegray.vim'
-Plug 'honza/vim-snippets'
-Plug 'mattn/emmet-vim'
-Plug 'ervandew/supertab'
-Plug 'townk/vim-autoclose'
-Plug 'othree/javascript-libraries-syntax.vim'
-Plug 'scrooloose/syntastic'
-Plug 'plasticboy/vim-markdown'
-Plug 'elzr/vim-json'
-Plug 'othree/html5.vim'
-Plug 'leafgarland/typescript-vim'
-Plug 'godlygeek/tabular'
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'yggdroot/indentline'
-Plug 'bronson/vim-trailing-whitespace'
-Plug 'ap/vim-css-color'
-Plug 'chiel92/vim-autoformat'
-Plug 'easymotion/vim-easymotion'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'myusuf3/numbers.vim'
-Plug 'airblade/vim-gitgutter'
-Plug 'bling/vim-airline'
-Plug 'reasonml/vim-reason'
-Plug 'the-lambda-church/merlin'
-Plug 'rgrinberg/vim-ocaml'
-Plug 'kien/ctrlp.vim'
-Plug 'tpope/vim-fugitive'
-Plug 'cakebaker/scss-syntax.vim'
-Plug 'tomtom/tcomment_vim'
-Plug 'chiel92/vim-autoformat'
-Plug 'rakr/vim-one'
-Plug 'w0ng/vim-hybrid'
-Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'jelera/vim-javascript-syntax'
-Plug 'othree/javascript-libraries-syntax.vim'
-Plug 'pangloss/vim-javascript'
-Plug 'isruslan/vim-es6'
-Plug 'elzr/vim-json'
-Plug 'wavded/vim-stylus'
-Plug 'moll/vim-node'
-Plug 'sheerun/vim-polyglot'
-Plug 'hail2u/vim-css3-syntax'
-Plug 'fisadev/vim-ctrlp-cmdpalette'
-Plug 'jiangmiao/auto-pairs'
-Plug 'tpope/vim-surround'
-Plug 'edkolev/tmuxline.vim'
-Plug 'ryanoasis/vim-devicons'
-Plug 'enricobacis/vim-airline-clock'
-Plug 'renyard/vim-git-flow-format'
-Plug 'wincent/ferret'
-Plug 'shougo/neocomplete.vim'
-Plug 'valloric/youcompleteme'
-Plug 'sirver/ultisnips'
-Plug 'tpope/vim-endwise'
-Plug 'raimondi/delimitmate'
-Plug 'davidhalter/jedi-vim'
-Plug 'jiangmiao/auto-pairs'
-Plug 'shougo/neosnippet-snippets'
-Plug 'prettier/prettier'
-Plug 'sbdchd/neoformat'
-Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-Plug 'noahfrederick/vim-hemisu'
-Plug 'noahfrederick/vim-noctu'
-Plug 'sirver/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'mbbill/undotree'
-Plug 'autozimu/LanguageClient-neovim', {
-  \ 'branch': 'next',
-  \ 'do': 'bash install.sh',
-  \}
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'valloric/youcompleteme'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'ajh17/spacegray.vim'
+Plugin 'honza/vim-snippets'
+Plugin 'mattn/emmet-vim'
+Plugin 'ervandew/supertab'
+Plugin 'townk/vim-autoclose'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'othree/html5.vim'
+Plugin 'godlygeek/tabular'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'yggdroot/indentline'
+Plugin 'bronson/vim-trailing-whitespace'
+Plugin 'ap/vim-css-color'
+Plugin 'chiel92/vim-autoformat'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'myusuf3/numbers.vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'bling/vim-airline'
+Plugin 'reasonml/vim-reason'
+Plugin 'the-lambda-church/merlin'
+Plugin 'rgrinberg/vim-ocaml'
+Plugin 'kien/ctrlp.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'w0ng/vim-hybrid'
+Plugin 'dracula/vim', { 'as': 'dracula' }
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'othree/javascript-libraries-syntax.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'isruslan/vim-es6'
+Plugin 'elzr/vim-json'
+Plugin 'wavded/vim-stylus'
+Plugin 'moll/vim-node'
+Plugin 'sheerun/vim-polyglot'
+Plugin 'hail2u/vim-css3-syntax'
+Plugin 'fisadev/vim-ctrlp-cmdpalette'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'tpope/vim-surround'
+Plugin 'edkolev/tmuxline.vim'
+Plugin 'ryanoasis/vim-devicons'
+Plugin 'enricobacis/vim-airline-clock'
+Plugin 'renyard/vim-git-flow-format'
+Plugin 'wincent/ferret'
+Plugin 'shougo/neocomplete.vim'
+Plugin 'sirver/ultisnips'
+Plugin 'tpope/vim-endwise'
+Plugin 'raimondi/delimitmate'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'shougo/neosnippet-snippets'
+Plugin 'prettier/prettier'
+Plugin 'sbdchd/neoformat'
+Plugin 'prettier/vim-prettier', { 'do': 'yarn install' }
+Plugin 'noahfrederick/vim-hemisu'
+Plugin 'noahfrederick/vim-noctu'
+Plugin 'mbbill/undotree'
+Plugin 'autozimu/LanguageClient-neovim', {
+      \ 'branch': 'next',
+      \ 'do': 'bash install.sh',
+      \}
+Plugin 'w0rp/ale'
 
 " (Oational) Multi-entry selection UI.
-Plug 'junegunn/fzf'
+Plugin 'junegunn/fzf'
+
+
+call vundle#end()            " required
+filetype plugin indent on    " required
 
 if has("persistent_undo")
-    set undodir=~/.undodir/
-    set undofile
+  set undodir=~/.undodir/
+  set undofile
 endif
 let g:LanguageClient_serverCommands = {
-    \ 'reason': ['ocaml-language-server', '--stdio'],
-    \ 'ocaml': ['ocaml-language-server', '--stdio'],
-    \ 'javascript': ['javascript-typescript-stdio'],
-    \ }
+      \ 'reason': ['ocaml-language-server', '--stdio'],
+      \ 'ocaml': ['ocaml-language-server', '--stdio'],
+      \ 'javascript': ['javascript-typescript-stdio'],
+      \ }
 
 syntax enable
 
+" Enable completion where available.
+let g:ale_completion_enabled = 1
+
 if has('gui_running')
-	set guifont=Fira\ Code
+  set guifont=Fira\ Code
 endif
 
 if &compatible
@@ -150,22 +158,45 @@ set ar "Autoread, update the opened files when they are changed"
 set wrap "Wrap lines
 set clipboard=unnamedplus
 
-call plug#end()
-
 let mapleader = ","
 
 nnoremap <leader>d dd
 nnoremap <leader>q :q<CR>
+nnoremap <leader>qa :qa<CR>
+nnoremap <leader>w :wa<CR>
 nnoremap <leader>p :CtrlP<cr>
 nnoremap <leader>u :tabprevious<cr>
 nnoremap <leader>i :tabnext<cr>
+nnoremap <leader>t :tabnew<CR>
 nnoremap <leader>n :NERDTreeToggle<CR>
 nnoremap <leader>z :UndotreeToggle<cr>
 nnoremap <leader>a :bp<cr>
 nnoremap <leader>s :bn<cr>
+nnoremap <leader>g :GitGutterLineHighlightsEnable<cr>
+nnoremap <leader>jd :YcmCompleter GoTo<CR>
+nnoremap <leader>y yy
+nmap <Leader>ha <Plug>GitGutterStageHunk
+nmap <Leader>hr <Plug>GitGutterUndoHunk
+nmap <Leader>hv <Plug>GitGutterPreviewHunk
+vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
+vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
+
+nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+nnoremap <silent> <C-k> :call LanguageClient_textDocument_formatting()<CR>
+
 set nocompatible
+filetype plugin on
+filetype indent on
 
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+augroup load_ycm
+  autocmd!
+  autocmd CursorHold, CursorHoldI * :packadd YouCompleteMe
+        \ | autocmd! load_ycm
+augroup END
 
 " ## added by OPAM user-setup for vim / base ## 93ee63e278bdfc07d1139a748ed3fff2 ## you can edit, but keep this line
 let s:opam_share_dir = system("opam config var share")
@@ -208,7 +239,7 @@ let g:prettier = "prettier"
 let g:prettier#exec_cmd_async = 1
 let g:prettier#quickfix_enabled = 0
 let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.graphql,*.md,*.vue PrettierAsync
 
 " max line length that prettier will wrap on
 " Prettier default: 80
@@ -259,6 +290,8 @@ let g:prettier#config#prose_wrap = 'preserve'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git\|^\.coffee|^\ios'
 let g:ctrlp_working_path_mode = 0
+
+let NERDTreeShowHidden=1
 
 set background=dark
 syntax on
