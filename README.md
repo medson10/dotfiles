@@ -1,1 +1,1 @@
-# MyDotFiles
+# dotfiles
