@@ -7,6 +7,7 @@ call vundle#begin()
 
 "let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'w0rp/ale'
 Plugin 'scrooloose/nerdtree'
 Plugin 'whatyouhide/vim-gotham'
 Plugin 'mxw/vim-jsx'
@@ -14,10 +15,10 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'mattn/emmet-vim'
 Plugin 'jiangmiao/auto-pairs'
+Plugin 'chiel92/vim-autoformat'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'bronson/vim-trailing-whitespace'
-Plugin 'chiel92/vim-autoformat'
 Plugin 'scrooloose/syntastic'
 Plugin 'myusuf3/numbers.vim'
 Plugin 'airblade/vim-gitgutter'
@@ -57,10 +58,6 @@ Plugin 'mbbill/undotree'
 Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'dkprice/vim-easygrep'
 Plugin 'ap/vim-css-color'
-Plugin 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
 Plugin 'itchyny/vim-cursorword'
 Plugin 'rrethy/vim-illuminate'
 Plugin 'elixir-lang/vim-elixir'
@@ -73,7 +70,11 @@ Plugin 'thinca/vim-quickrun'
 Plugin 'cocopon/iceberg.vim'
 Plugin 'jparise/vim-graphql'
 Plugin 'reedes/vim-colors-pencil'
-Plugin 'udalov/kotlin-vim'
+Plugin 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 set hidden
 
@@ -91,10 +92,7 @@ let g:LanguageClient_serverCommands = {
     \ 'dot': ['dot-language-server', '--stdio'],
     \ }
 
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -182,7 +180,7 @@ nnoremap <leader>a :bp<cr>
 nnoremap <leader>s :bn<cr>
 nnoremap <leader>sr :vsp<cr>
 nnoremap <leader>sd :sp<cr>
-nnoremap <leader>g :GitGutterLineHighlightsEnable<cr>
+nnoremap <leader>gue :GitGutterLineHighlightsEnable<cr>
 nnoremap <leader>st :SyntasticToggleMode<cr>
 nnoremap <leader>y yy
 nnoremap <leader>r :bufdo e<cr>
@@ -196,6 +194,9 @@ vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 nnoremap <silent> gd :call LanguageClient_textDocument_definition()<cr>
 nnoremap <silent> gf :call LanguageClient_textDocument_formatting()<cr>
 nnoremap <silent> lf :call LanguageClient_textDocument_hover()<cr>
+nnoremap <leader> gd :ALEGoToDefinitionInTab<CR>
+nnoremap <leader> fr :ALEFindReferences<CR>
+nnoremap <leader> gf :ALEHover<CR>
 nnoremap <leader> gc :GV<cr>
 map <space> /
 nnoremap <Leader>fu :CtrlPFunky<Cr>
@@ -215,6 +216,17 @@ filetype plugin on
 filetype indent on
 
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+let g:ale_fixers = ['prettier', 'merlin', 'ols', 'refmt', 'tsserver', 'credo', 'mix', 'erlc', 'joker']
+let g:ale_fix_on_save = 1
+let g:ale_completion_enabled = 1
+" Only run linters named in ale_linters settings.
+let g:ale_linters_explicit = 0
+let g:ale_reason_ols_use_global = 1
+
+let g:typescript_indent_disable = 1
+let g:typescript_compiler_binary = 'tsc'
+let g:typescript_compiler_options = ''
 
 
 let g:python_host_prog = '/Users/medson/.asdf/plugins/python/pyenv/versions/neovim2/bin/python'
@@ -244,12 +256,8 @@ let g:indentLine_color_term = 239
 
 let g:user_emmet_mode='a'    "enable all function in all mode.
 
-let g:typescript_indent_disable = 1
-let g:typescript_compiler_binary = 'tsc'
-let g:typescript_compiler_options = ''
-
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
-let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git\|^\.coffee|^\ios'
+let g:ctrlp_custom_ignore = 'node_modules\|deps\|_build\|^\.DS_Store\|^\.git\|^\.coffee|^\ios\'
 let g:ctrlp_working_path_mode = 0
 
 " ## added by OPAM user-setup for vim / base ## 93ee63e278bdfc07d1139a748ed3fff2 ## you can edit, but keep this line
@@ -324,7 +332,7 @@ let g:UltiSnipsEditSplit="vertical"
 
 autocmd FileType apache setlocal commentstring=#\ %s
 
-let g:EasyGrepFilesToExclude=".svn,.git,node_modules"
+let g:EasyGrepFilesToExclude=".svn,.git,node_modules,deps"
 let g:EasyGrepCommand="grep"
 let g:EasyGrepRecursive=1
 
@@ -354,7 +362,8 @@ let g:vimreason_extra_args_expr_reason = '"--print-width " . ' .  "min([120, win
 autocmd FileType reason map <buffer> <D-M> :ReasonPrettyPrint<Cr>
 
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='lucius'
+let g:airline#extensions#ale#enabled = 1
+" let g:airline_theme='lucius'
 " let g:airline_theme = 'pencil'
 
 let g:gotham_airline_emphasised_insert = 0
