@@ -1,20 +1,16 @@
 filetype off
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
-"let Vundle manage Vundle, required
+set rtp+=~/.vim/bundle/Vundle.vim
+
+call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'w0rp/ale'
+" Plugin 'w0rp/ale'
 Plugin 'scrooloose/nerdtree'
 Plugin 'whatyouhide/vim-gotham'
 Plugin 'mxw/vim-jsx'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'mattn/emmet-vim'
-Plugin 'jiangmiao/auto-pairs'
 Plugin 'chiel92/vim-autoformat'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'nathanaelkane/vim-indent-guides'
@@ -50,7 +46,6 @@ Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-rails'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'janko-m/vim-test'
-Plugin 'shougo/neocomplete.vim'
 Plugin 'junegunn/gv.vim'
 Plugin 'rust-lang/rust.vim'
 Plugin 'L9'
@@ -70,31 +65,81 @@ Plugin 'thinca/vim-quickrun'
 Plugin 'cocopon/iceberg.vim'
 Plugin 'jparise/vim-graphql'
 Plugin 'reedes/vim-colors-pencil'
-Plugin 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
-Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plugin 'autozimu/LanguageClient-neovim', {
+"     \ 'branch': 'next',
+"     \ 'do': 'bash install.sh',
+"     \ }
+" Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'benmills/vimux'
+Plugin 'mattn/webapi-vim'
+Plugin 'wincent/command-t'
+Plugin 'terryma/vim-expand-region'
+Plugin 'wellle/targets.vim'
+Plugin 'tpope/vim-eunuch'
+Plugin 'shougo/neomru.vim'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'prabirshrestha/async.vim'
+Plugin 'prabirshrestha/asyncomplete.vim'
+Plugin 'wellle/tmux-complete.vim'
+Plugin 'metakirby5/codi.vim'
+Plugin 'omnisharp/omnisharp-vim'
+Plugin 'taglist.vim'
+Plugin 'wvffle/vimterm'
+Plugin 'thaerkh/vim-workspace'
+Plugin 'YankRing.vim'
+Plugin 'rip-rip/clang_complete'
+Plugin 'msanders/cocoa.vim'
+Plugin 'keith/swift.vim'
+Plugin 'haya14busa/incsearch.vim'
+Plugin 'haya14busa/incsearch-easymotion.vim'
+Plugin 'haya14busa/incsearch-fuzzy.vim'
+Plugin 'sudar/vim-arduino-syntax'
+Plugin 'hashivim/vim-terraform'
+Plugin 'thinca/vim-ref'
+Plugin 'matze/vim-move'
+Plugin 'jamessan/vim-gnupg'
+Plugin 'udalov/kotlin-vim'
+Plugin 'lukerandall/haskellmode-vim'
+Plugin 'itchyny/calendar.vim'
+Plugin 'camelcasemotion'
+Plugin 'flowtype/vim-flow'
+Plugin 'yuttie/comfortable-motion.vim'
+Plugin 'kshenoy/vim-signature'
+Plugin 'quramy/tsuquyomi'
+Plugin 'guns/vim-sexp'
+Plugin 'junegunn/vim-peekaboo'
+Plugin 'mtth/scratch.vim'
+Plugin 'machakann/vim-highlightedyank'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'Shougo/neco-vim'
+Plugin 'neoclide/coc-neco'
+Plugin 'neoclide/coc.nvim'
+Plugin 'neoclide/coc-imselect'
 
 set hidden
 
-let g:LanguageClient_serverCommands = {
-    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-    \ 'javascript': ['flow-language-server', '--stdio'],
-    \ 'javascript.jsx': ['flow-language-server', '--stdio'],
-    \ 'typescript': ['typescript-language-server', '--stdio'],
-    \ 'reason': ['ocaml-language-server', '--stdio'],
-    \ 'css': ['css-language-server', '--stdio'],
-    \ 'scss': ['css-language-server', '--stdio'],
-    \ 'sass': ['css-language-server', '--stdio'],
-    \ 'less': ['css-language-server', '--stdio'],
-    \ 'ocaml': ['ocaml-language-server', '--stdio'],
-    \ 'dot': ['dot-language-server', '--stdio'],
-    \ }
-
-nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+" let g:LanguageClient_serverCommands = {
+"     \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+"     \ 'javascript': ['flow-language-server', '--stdio'],
+"     \ 'javascript.jsx': ['flow-language-server', '--stdio'],
+"     \ 'typescript': ['typescript-language-server', '--stdio'],
+"     \ 'reason': ['ocaml-language-server', '--stdio'],
+"     \ 'css': ['css-language-server', '--stdio'],
+"     \ 'scss': ['css-language-server', '--stdio'],
+"     \ 'sass': ['css-language-server', '--stdio'],
+"     \ 'less': ['css-language-server', '--stdio'],
+"     \ 'ocaml': ['ocaml-language-server', '--stdio'],
+"     \ 'dot': ['dot-language-server', '--stdio'],
+"     \ }
+"
+" nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 
 call vundle#end()            " required
+
 filetype plugin indent on    " required
 
 if has("persistent_undo")
@@ -125,15 +170,10 @@ set nobackup
 set nowb
 set noswapfile
 
-" map CTRL-A to beginning-of-line (insert mode)
 imap <C-a> <esc>0i
-" CTRL-C to copy (visual mode)
 vmap <C-c> y
-" CTRL-X to cut (visual mode)
 vmap <C-x> x
-" CTRL-V to paste (insert mode)
 imap <C-v> <esc>P
-" CTRL-Enter to insert new line in normal mode
 
 nmap <C-h> <C-w>h
 nmap <C-j> <C-w>j
@@ -191,14 +231,13 @@ nmap <Leader>hr <Plug>GitGutterUndoHunk
 nmap <Leader>hv <Plug>GitGutterPreviewHunk
 vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
 vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
-nnoremap <silent> gd :call LanguageClient_textDocument_definition()<cr>
-nnoremap <silent> gf :call LanguageClient_textDocument_formatting()<cr>
-nnoremap <silent> lf :call LanguageClient_textDocument_hover()<cr>
-nnoremap <leader> gd :ALEGoToDefinitionInTab<CR>
-nnoremap <leader> fr :ALEFindReferences<CR>
-nnoremap <leader> gf :ALEHover<CR>
+" nnoremap <silent> gd :call LanguageClient_textDocument_definition()<cr>
+" nnoremap <silent> gf :call LanguageClient_textDocument_formatting()<cr>
+" nnoremap <silent> lf :call LanguageClient_textDocument_hover()<cr>
+" nnoremap <leader> gd :ALEGoToDefinitionInTab<CR>
+" nnoremap <leader> fr :ALEFindReferences<CR>
+" nnoremap <leader> gf :ALEHover<CR>
 nnoremap <leader> gc :GV<cr>
-map <space> /
 nnoremap <Leader>fu :CtrlPFunky<Cr>
 nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 nnoremap <leader>rpu :ReplaceUndo<cr>
@@ -210,6 +249,24 @@ nmap <silent> t<C-l> :TestLast<CR>    " t Ctrl+l
 nmap <silent> t<C-g> :TestVisit<CR>   " t Ctrl+g
 nmap <F8> :TagbarToggle<CR>
 nnoremap <leader>il :IndentLinesToggle<CR>
+map K <Plug>(expand_region_expand)
+map J <Plug>(expand_region_shrink)
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+map m/ <Plug>(incsearch-easymotion-/)
+map m? <Plug>(incsearch-easymotion-?)
+map mg/ <Plug>(incsearch-easymotion-stay)
+map z/ <Plug>(incsearch-fuzzy-/)
+map z? <Plug>(incsearch-fuzzy-?)
+map zg/ <Plug>(incsearch-fuzzy-stay)
+
+nnoremap <silent> <C-d> :call comfortable_motion#flick(100)<CR>
+nnoremap <silent> <C-u> :call comfortable_motion#flick(-100)<CR>
+nnoremap <silent> <C-f> :call comfortable_motion#flick(200)<CR>
+nnoremap <silent> <C-b> :call comfortable_motion#flick(-200)<CR>
+
+map <space> /
 
 set nocompatible
 filetype plugin on
@@ -217,12 +274,9 @@ filetype indent on
 
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-let g:ale_fixers = ['prettier', 'merlin', 'ols', 'refmt', 'tsserver', 'credo', 'mix', 'erlc', 'joker']
-let g:ale_fix_on_save = 1
-let g:ale_completion_enabled = 1
-" Only run linters named in ale_linters settings.
-let g:ale_linters_explicit = 0
-let g:ale_reason_ols_use_global = 1
+" let g:ale_fixers = ['prettier', 'merlin', 'ols', 'refmt', 'tsserver', 'credo', 'mix', 'erlc', 'joker']
+" let g:ale_linters_explicit = 0
+" let g:ale_reason_ols_use_global = 1
 
 let g:typescript_indent_disable = 1
 let g:typescript_compiler_binary = 'tsc'
@@ -238,7 +292,6 @@ let g:jsx_ext_required = 0
 let g:prettier#autoformat = 0
 let g:prettier = "prettier"
 let g:prettier#exec_cmd_async = 0
-let g:prettier#autoformat = 0
 let g:prettier#config#print_width = 80
 let g:prettier#config#tab_width = 2
 let g:prettier#config#use_tabs = 'false'
@@ -260,7 +313,6 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 let g:ctrlp_custom_ignore = 'node_modules\|deps\|_build\|^\.DS_Store\|^\.git\|^\.coffee|^\ios\'
 let g:ctrlp_working_path_mode = 0
 
-" ## added by OPAM user-setup for vim / base ## 93ee63e278bdfc07d1139a748ed3fff2 ## you can edit, but keep this line
 let s:opam_share_dir = system("opam config var share")
 let s:opam_share_dir = substitute(s:opam_share_dir, '[\r\n]*$', '', '')
 
@@ -286,44 +338,17 @@ let s:opam_packages = ["ocp-indent", "ocp-index", "merlin"]
 let s:opam_check_cmdline = ["opam list --installed --short --safe --color=never"] + s:opam_packages
 let s:opam_available_tools = split(system(join(s:opam_check_cmdline)))
 for tool in s:opam_packages
-  " Respect package order (merlin should be after ocp-index)
   if count(s:opam_available_tools, tool) > 0
     call s:opam_configuration[tool]()
   endif
 endfor
-" ## end of OPAM user-setup addition for vim / base ## keep this line
 
 let g:acp_enableAtStartup = 0
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-        \ }
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
   return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
 endfunction
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
-let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'"Note: This option mus
 
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
@@ -361,20 +386,20 @@ let g:vimreason_extra_args_expr_reason = '"--print-width " . ' .  "winwidth('.')
 let g:vimreason_extra_args_expr_reason = '"--print-width " . ' .  "min([120, winwidth('.')])"
 autocmd FileType reason map <buffer> <D-M> :ReasonPrettyPrint<Cr>
 
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#ale#enabled = 1
-" let g:airline_theme='lucius'
-" let g:airline_theme = 'pencil'
+let g:comfortable_motion_scroll_down_key = "j"
+let g:comfortable_motion_scroll_up_key = "k"
+let g:comfortable_motion_no_default_key_mappings = 1
 
-let g:gotham_airline_emphasised_insert = 0
+let g:highlightedyank_highlight_duration = 1000
+
+let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#ale#enabled = 1
+let g:gotham_airline_emphasised_insert = 1
+let g:airline_theme='gotham256'
 
 set background=dark
-" set background=light
 syntax on
 
-" colorscheme hemisu
-" colorscheme dracula
 colorscheme gotham256
-" colorscheme pencil
 
 set hid
