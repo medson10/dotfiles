@@ -1,0 +1,23 @@
+set clipboard=unnamedplus
+let mapleader = ","
+nnoremap <leader>d dd
+nnoremap <leader>q :q<CR>
+nnoremap <leader>nh :noh<CR>
+nnoremap <leader>qa :qa<CR>
+nnoremap <leader>w :wa<CR>
+nnoremap <leader>u :tabprevious<cr>
+nnoremap <leader>i :tabnext<cr>
+nnoremap <leader>t :tabnew<CR>
+nnoremap <leader>to :tabonly<CR>
+nnoremap <leader>tc :tabclose<CR>
+nnoremap <leader>a :bp<cr>
+nnoremap <leader>s :bn<cr>
+nnoremap <leader>sr :vsp<cr>
+nnoremap <leader>sd :sp<cr>
+nnoremap <leader>y yy
+nnoremap <leader>r :bufdo e<cr>
+map <space> /
+set surround
+set multiple-cursors
+map gf :action ReformatCode<CR>
+map pr :action ReformatwithPrettier<CR>
