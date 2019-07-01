@@ -4,9 +4,9 @@ set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
-" Plugin 'w0rp/ale'
 Plugin 'scrooloose/nerdtree'
 Plugin 'whatyouhide/vim-gotham'
+Plugin 'myusuf3/numbers.vim'
 Plugin 'mxw/vim-jsx'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'jistr/vim-nerdtree-tabs'
@@ -15,132 +15,58 @@ Plugin 'chiel92/vim-autoformat'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'bronson/vim-trailing-whitespace'
-Plugin 'scrooloose/syntastic'
-Plugin 'myusuf3/numbers.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'bling/vim-airline'
 Plugin 'the-lambda-church/merlin'
-Plugin 'rgrinberg/vim-ocaml'
 Plugin 'kien/ctrlp.vim'
-Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-fugitive'
-Plugin 'jelera/vim-javascript-syntax'
-Plugin 'valloric/matchtagalways'
-Plugin 'pangloss/vim-javascript'
-Plugin 'wavded/vim-stylus'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'tpope/vim-surround'
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'enricobacis/vim-airline-clock'
-Plugin 'fatih/vim-go'
 Plugin 'renyard/vim-git-flow-format'
 Plugin 'raimondi/delimitmate'
 Plugin 'shougo/neosnippet-snippets'
-Plugin 'sbdchd/neoformat'
-Plugin 'prettier/vim-prettier', {
-    \ 'do': 'npm install',
-    \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss'] }
-Plugin 'reasonml-editor/vim-reason-plus'
-Plugin 'mru.vim'
-Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-rails'
-Plugin 'vim-ruby/vim-ruby'
 Plugin 'janko-m/vim-test'
 Plugin 'junegunn/gv.vim'
-Plugin 'rust-lang/rust.vim'
-Plugin 'L9'
 Plugin 'mbbill/undotree'
 Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'dkprice/vim-easygrep'
-Plugin 'ap/vim-css-color'
 Plugin 'itchyny/vim-cursorword'
 Plugin 'rrethy/vim-illuminate'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'junegunn/fzf'
-Plugin 'majutsushi/tagbar'
-Plugin 'yggdroot/indentline'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'derekwyatt/vim-scala'
 Plugin 'thinca/vim-quickrun'
-Plugin 'cocopon/iceberg.vim'
 Plugin 'jparise/vim-graphql'
 Plugin 'reedes/vim-colors-pencil'
-" Plugin 'autozimu/LanguageClient-neovim', {
-"     \ 'branch': 'next',
-"     \ 'do': 'bash install.sh',
-"     \ }
-" Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'benmills/vimux'
-Plugin 'mattn/webapi-vim'
 Plugin 'wincent/command-t'
 Plugin 'terryma/vim-expand-region'
 Plugin 'wellle/targets.vim'
-Plugin 'tpope/vim-eunuch'
-Plugin 'shougo/neomru.vim'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'prabirshrestha/async.vim'
-Plugin 'prabirshrestha/asyncomplete.vim'
-Plugin 'wellle/tmux-complete.vim'
-Plugin 'metakirby5/codi.vim'
-Plugin 'omnisharp/omnisharp-vim'
-Plugin 'taglist.vim'
-Plugin 'wvffle/vimterm'
-Plugin 'thaerkh/vim-workspace'
-Plugin 'YankRing.vim'
-Plugin 'rip-rip/clang_complete'
-Plugin 'msanders/cocoa.vim'
-Plugin 'keith/swift.vim'
 Plugin 'haya14busa/incsearch.vim'
 Plugin 'haya14busa/incsearch-easymotion.vim'
 Plugin 'haya14busa/incsearch-fuzzy.vim'
 Plugin 'sudar/vim-arduino-syntax'
 Plugin 'hashivim/vim-terraform'
-Plugin 'thinca/vim-ref'
-Plugin 'matze/vim-move'
-Plugin 'jamessan/vim-gnupg'
-Plugin 'udalov/kotlin-vim'
-Plugin 'lukerandall/haskellmode-vim'
-Plugin 'itchyny/calendar.vim'
 Plugin 'camelcasemotion'
 Plugin 'flowtype/vim-flow'
 Plugin 'yuttie/comfortable-motion.vim'
 Plugin 'kshenoy/vim-signature'
-Plugin 'quramy/tsuquyomi'
-Plugin 'guns/vim-sexp'
-Plugin 'junegunn/vim-peekaboo'
 Plugin 'mtth/scratch.vim'
 Plugin 'machakann/vim-highlightedyank'
 Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'Shougo/neco-vim'
-Plugin 'neoclide/coc-neco'
-Plugin 'neoclide/coc.nvim'
-Plugin 'neoclide/coc-imselect'
+Plugin 'neoclide/coc.nvim', { 'branch': 'release' }
 
 set hidden
 
-" let g:LanguageClient_serverCommands = {
-"     \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-"     \ 'javascript': ['flow-language-server', '--stdio'],
-"     \ 'javascript.jsx': ['flow-language-server', '--stdio'],
-"     \ 'typescript': ['typescript-language-server', '--stdio'],
-"     \ 'reason': ['ocaml-language-server', '--stdio'],
-"     \ 'css': ['css-language-server', '--stdio'],
-"     \ 'scss': ['css-language-server', '--stdio'],
-"     \ 'sass': ['css-language-server', '--stdio'],
-"     \ 'less': ['css-language-server', '--stdio'],
-"     \ 'ocaml': ['ocaml-language-server', '--stdio'],
-"     \ 'dot': ['dot-language-server', '--stdio'],
-"     \ }
-"
-" nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+call vundle#end()
 
-call vundle#end()            " required
-
-filetype plugin indent on    " required
+filetype plugin indent on
 
 if has("persistent_undo")
   set undodir=~/.undodir/
@@ -221,22 +147,27 @@ nnoremap <leader>s :bn<cr>
 nnoremap <leader>sr :vsp<cr>
 nnoremap <leader>sd :sp<cr>
 nnoremap <leader>gue :GitGutterLineHighlightsEnable<cr>
-nnoremap <leader>st :SyntasticToggleMode<cr>
-nnoremap <leader>y yy
 nnoremap <leader>r :bufdo e<cr>
-nnoremap <leader>pr :Prettier<cr>
 nnoremap <leader>ws :ToggleWorkspace<CR>
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 nmap <Leader>ha <Plug>GitGutterStageHunk
 nmap <Leader>hr <Plug>GitGutterUndoHunk
 nmap <Leader>hv <Plug>GitGutterPreviewHunk
 vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
 vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
-" nnoremap <silent> gd :call LanguageClient_textDocument_definition()<cr>
-" nnoremap <silent> gf :call LanguageClient_textDocument_formatting()<cr>
-" nnoremap <silent> lf :call LanguageClient_textDocument_hover()<cr>
-" nnoremap <leader> gd :ALEGoToDefinitionInTab<CR>
-" nnoremap <leader> fr :ALEFindReferences<CR>
-" nnoremap <leader> gf :ALEHover<CR>
 nnoremap <leader> gc :GV<cr>
 nnoremap <Leader>fu :CtrlPFunky<Cr>
 nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
@@ -272,6 +203,8 @@ set nocompatible
 filetype plugin on
 filetype indent on
 
+command! -nargs=0 Format :call CocAction('format')
+
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " let g:ale_fixers = ['prettier', 'merlin', 'ols', 'refmt', 'tsserver', 'credo', 'mix', 'erlc', 'joker']
@@ -303,7 +236,6 @@ let g:prettier#config#arrow_parens = 'avoid'
 let g:prettier#config#trailing_comma = 'all'
 let g:prettier#config#config_precedence = 'prefer-file'
 let g:prettier#config#prose_wrap = 'preserve'
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.graphql,*.md,*.vue PrettierAsync
 
 let g:indentLine_color_term = 239
 
@@ -355,8 +287,6 @@ let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsEditSplit="vertical"
 
-autocmd FileType apache setlocal commentstring=#\ %s
-
 let g:EasyGrepFilesToExclude=".svn,.git,node_modules,deps"
 let g:EasyGrepCommand="grep"
 let g:EasyGrepRecursive=1
@@ -384,7 +314,6 @@ let g:mta_filetypes = {
 let g:vimreason_extra_args_expr_reason = '"--print-width 90"'
 let g:vimreason_extra_args_expr_reason = '"--print-width " . ' .  "winwidth('.')"
 let g:vimreason_extra_args_expr_reason = '"--print-width " . ' .  "min([120, winwidth('.')])"
-autocmd FileType reason map <buffer> <D-M> :ReasonPrettyPrint<Cr>
 
 let g:comfortable_motion_scroll_down_key = "j"
 let g:comfortable_motion_scroll_up_key = "k"
@@ -393,7 +322,6 @@ let g:comfortable_motion_no_default_key_mappings = 1
 let g:highlightedyank_highlight_duration = 1000
 
 let g:airline#extensions#tabline#enabled = 1
-" let g:airline#extensions#ale#enabled = 1
 let g:gotham_airline_emphasised_insert = 1
 let g:airline_theme='gotham256'
 
