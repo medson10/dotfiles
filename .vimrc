@@ -5,9 +5,9 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
+Plugin 'w0rp/ale'
 Plugin 'whatyouhide/vim-gotham'
 Plugin 'myusuf3/numbers.vim'
-Plugin 'mxw/vim-jsx'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'mattn/emmet-vim'
@@ -23,11 +23,9 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'tpope/vim-surround'
 Plugin 'edkolev/tmuxline.vim'
-Plugin 'enricobacis/vim-airline-clock'
 Plugin 'renyard/vim-git-flow-format'
 Plugin 'raimondi/delimitmate'
 Plugin 'shougo/neosnippet-snippets'
-Plugin 'tpope/vim-rails'
 Plugin 'janko-m/vim-test'
 Plugin 'junegunn/gv.vim'
 Plugin 'mbbill/undotree'
@@ -35,32 +33,65 @@ Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'dkprice/vim-easygrep'
 Plugin 'itchyny/vim-cursorword'
 Plugin 'rrethy/vim-illuminate'
-Plugin 'elixir-lang/vim-elixir'
-Plugin 'junegunn/fzf'
-Plugin 'thinca/vim-quickrun'
 Plugin 'jparise/vim-graphql'
 Plugin 'reedes/vim-colors-pencil'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tomtom/tcomment_vim'
-Plugin 'benmills/vimux'
 Plugin 'wincent/command-t'
-Plugin 'terryma/vim-expand-region'
-Plugin 'wellle/targets.vim'
 Plugin 'easymotion/vim-easymotion'
-Plugin 'SirVer/ultisnips'
 Plugin 'haya14busa/incsearch.vim'
 Plugin 'haya14busa/incsearch-easymotion.vim'
 Plugin 'haya14busa/incsearch-fuzzy.vim'
 Plugin 'sudar/vim-arduino-syntax'
 Plugin 'hashivim/vim-terraform'
 Plugin 'camelcasemotion'
-Plugin 'flowtype/vim-flow'
-Plugin 'yuttie/comfortable-motion.vim'
 Plugin 'kshenoy/vim-signature'
 Plugin 'mtth/scratch.vim'
 Plugin 'machakann/vim-highlightedyank'
 Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'neoclide/coc.nvim', { 'branch': 'release' }
+Plugin 'reasonml-editor/vim-reason-plus'
+Plugin 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+Plugin 'prettier/vim-prettier'
+Plugin 'SirVer/ultisnips', { 'on': [] } "{{{
+  let g:UltiSnipsSnippetsDir = '~/.vim/plugged/vim-snippets/UltiSnips'
+  let g:UltiSnipsExpandTrigger="<c-j>"
+  let g:UltiSnipsJumpForwardTrigger="<c-j>"
+  let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+  let g:UltiSnipsListSnippets="<c-l>"
+
+  inoremap <silent> <C-j> <C-r>=LoadUltiSnips()<cr>
+
+  " This function only runs when UltiSnips is not loaded
+  function! LoadUltiSnips()
+    let l:curpos = getcurpos()
+    execute plug#load('ultisnips')
+    call cursor(l:curpos[1], l:curpos[2])
+    call UltiSnips#ExpandSnippet()
+    return ""
+  endfunction
+"}}}
+
+Plugin 'FelikZ/ctrlp-py-matcher'
+Plugin 'ajh17/vimcompletesme'
+
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+    \ 'javascript': ['javascript-typescript-stdio'],
+    \ 'javascript.jsx': ['javascript-typescript-stdio'],
+    \ 'typescript': ['javascript-typescript-stdio'],
+    \ 'reason': ['~/.config/nvim/reason-language-server/reason-language-server.exe'],
+    \ 'css': ['css-language-server', '--stdio'],
+    \ 'scss': ['css-language-server', '--stdio'],
+    \ 'sass': ['css-language-server', '--stdio'],
+    \ 'less': ['css-language-server', '--stdio'],
+    \ 'ocaml': ['ocaml-language-server', '--stdio'],
+    \ 'dot': ['dot-language-server', '--stdio'],
+    \ }
+
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 
 set hidden
 
@@ -149,20 +180,6 @@ nnoremap <leader>sd :sp<cr>
 nnoremap <leader>gue :GitGutterLineHighlightsEnable<cr>
 nnoremap <leader>r :bufdo e<cr>
 nnoremap <leader>ws :ToggleWorkspace<CR>
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 nmap <Leader>ha <Plug>GitGutterStageHunk
 nmap <Leader>hr <Plug>GitGutterUndoHunk
 nmap <Leader>hv <Plug>GitGutterPreviewHunk
@@ -192,10 +209,13 @@ map z/ <Plug>(incsearch-fuzzy-/)
 map z? <Plug>(incsearch-fuzzy-?)
 map zg/ <Plug>(incsearch-fuzzy-stay)
 
-nnoremap <silent> <C-d> :call comfortable_motion#flick(100)<CR>
-nnoremap <silent> <C-u> :call comfortable_motion#flick(-100)<CR>
-nnoremap <silent> <C-f> :call comfortable_motion#flick(200)<CR>
-nnoremap <silent> <C-b> :call comfortable_motion#flick(-200)<CR>
+nnoremap <silent> gd :call LanguageClient_textDocument_definition()<cr>
+nnoremap <silent> gf :call LanguageClient_textDocument_formatting()<cr>
+nnoremap <silent> lf :call LanguageClient_textDocument_hover()<cr>
+
+nnoremap <leader> gd :ALEGoToDefinitionInTab<CR>
+nnoremap <leader> fr :ALEFindReferences<CR>
+nnoremap <leader> gf :ALEHover<CR>
 
 map <space> /
 
@@ -203,18 +223,17 @@ set nocompatible
 filetype plugin on
 filetype indent on
 
-command! -nargs=0 Format :call CocAction('format')
-
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd FileType vim let b:vcm_tab_complete = 'vim'
 
-" let g:ale_fixers = ['prettier', 'merlin', 'ols', 'refmt', 'tsserver', 'credo', 'mix', 'erlc', 'joker']
-" let g:ale_linters_explicit = 0
-" let g:ale_reason_ols_use_global = 1
+let g:ale_fixers = ['prettier', 'merlin', 'ols', 'refmt', 'tsserver', 'credo', 'mix', 'erlc', 'joker']
+let g:ale_linters_explicit = 0
+let g:ale_reason_ols_use_global = 1
+let g:ale_fix_on_save = 1
 
 let g:typescript_indent_disable = 1
 let g:typescript_compiler_binary = 'tsc'
 let g:typescript_compiler_options = ''
-
 
 let g:python_host_prog = '/Users/medson/.asdf/plugins/python/pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = '/Users/medson/.asdf/plugins/python/pyenv/versions/neovim3/bin/python'
@@ -236,6 +255,8 @@ let g:prettier#config#arrow_parens = 'avoid'
 let g:prettier#config#trailing_comma = 'all'
 let g:prettier#config#config_precedence = 'prefer-file'
 let g:prettier#config#prose_wrap = 'preserve'
+
+let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 
 let g:indentLine_color_term = 239
 
@@ -297,12 +318,6 @@ let g:ctrlp_funky_syntax_highlight = 1
 
 let NERDTreeShowHidden=1
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_javascript_eslint_checkers = ['eslint']
-
 let g:mta_use_matchparen_group = 1
 let g:mta_filetypes = {
     \ 'html' : 1,
@@ -314,10 +329,6 @@ let g:mta_filetypes = {
 let g:vimreason_extra_args_expr_reason = '"--print-width 90"'
 let g:vimreason_extra_args_expr_reason = '"--print-width " . ' .  "winwidth('.')"
 let g:vimreason_extra_args_expr_reason = '"--print-width " . ' .  "min([120, winwidth('.')])"
-
-let g:comfortable_motion_scroll_down_key = "j"
-let g:comfortable_motion_scroll_up_key = "k"
-let g:comfortable_motion_no_default_key_mappings = 1
 
 let g:highlightedyank_highlight_duration = 1000
 
