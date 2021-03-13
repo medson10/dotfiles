@@ -1,10 +1,7 @@
-esy
-expo-cli
 lerna
 neovim
-ocaml-language-server
 react-native-cli
-typescript-language-server
 reason-cli
-typescript
 npm
+node-gyp
+gatsby-cli
